@@ -53,9 +53,23 @@ public class Reporting extends confi{
         }
     }
     
+	private void takeScreenshot(String baseFileName) {
+        try {
+           
+            String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
+            String fileName = baseFileName + "_" + timestamp + ".png";
+            
+            File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+            File destination = new File(SCREENSHOT_PATH + fileName);
+            screenshot.renameTo(destination);
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
 
 
-@Test
+
+@Test(description ="Test Case to Click Executive Summary Report and Heatmap Report", groups={"smoke"})
 
 //Test Case to Click Executive Summary Report and Heatmap Report
 public void openReports() throws InterruptedException
@@ -69,7 +83,7 @@ public void openReports() throws InterruptedException
 	driver.navigate().back();
 } 
 
-@Test
+@Test(description ="Test Case to click more button", groups={"smoke"})
 //Test Case to click more button
 public void TC_02() throws InterruptedException
 {
@@ -80,7 +94,7 @@ public void TC_02() throws InterruptedException
 	driver.quit();
 }
 
-@Test
+@Test(description ="Test Case to click settings button", groups={"smoke"})
 //Test Case to click settings button
 public void TC_03() throws InterruptedException
 {
@@ -89,7 +103,7 @@ public void TC_03() throws InterruptedException
 	SettingsButton();
 }
 
-@Test
+@Test(description ="Test Case to click export button", groups={"smoke"})
 //Test Case to click export button
 public void TC_04() throws InterruptedException
 {
@@ -100,7 +114,7 @@ public void TC_04() throws InterruptedException
 }
 
 
-@Test
+@Test(description ="Test Case to Open Comments", groups={"smoke"})
 
 public void TC_05() throws InterruptedException
 {
@@ -109,13 +123,13 @@ public void TC_05() throws InterruptedException
 	driver.quit();
 }
 
-@Test
+@Test(description ="Test Case to open overall results", groups={"smoke"})
 
 public void TC_06() throws InterruptedException
 {
 	driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 	OpenOvr();
-	Screenshot_Scores();
+	takeScreenshot(SCREENSHOT_PATH + "OVR");
 	Thread.sleep(5000);
 	driver.quit();
 }
