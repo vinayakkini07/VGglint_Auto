@@ -1,40 +1,60 @@
-/*package testcase;
-import org.openqa.selenium.By;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.Test;
-import Conftest.confi;
-
-public class Login_Page extends confi{
-	
-@BeforeMethod
-
-
-}
-*/
 
 package testcase;
 
+import java.io.File;
+import java.time.Duration;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.OutputType;
+import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.ITestResult;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 import Conftest.confi;
 
-public class Login_Page extends confi{
+public class Reporting extends confi{
 	
-	
-@BeforeMethod
+	private static final String SCREENSHOT_PATH = System.getProperty("user.dir") + "/test-output/screenshots/";
+	private WebDriverWait wait;
 
-//@Test
-public void launchBrowser() throws InterruptedException 
-{
-	openBrowser();
-	LoginCredentials();
-	//ProgramChanging();
-	pChanging();
-}
+	@BeforeClass
+		public void setupClass() {
+        // Create screenshots directory if it doesn't exist
+        new File(SCREENSHOT_PATH).mkdirs();
+		}
+    
 	
+	@BeforeMethod
+
+
+		public void launchBrowser() throws InterruptedException 
+			{
+				openBrowser();
+				LoginCredentials();
+				//ProgramChanging();
+				pChanging();
+			}
+	
+ 	@AfterMethod
+    	public void tearDown(ITestResult result) {
+        // Take screenshot on test failure
+        if (result.getStatus() == ITestResult.FAILURE) {
+            takeScreenshot("FAILED_" + result.getName());
+        }
+        
+        if (driver != null) {
+            driver.quit();
+        }
+    }
+    
+
+
 @Test
 
 //Test Case to Click Executive Summary Report and Heatmap Report
