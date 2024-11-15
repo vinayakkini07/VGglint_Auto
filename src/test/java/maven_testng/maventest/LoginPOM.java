@@ -1,7 +1,7 @@
 
 //POM Page for Login Page Locators
 package maven_testng.maventest;
-
+import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -9,6 +9,7 @@ import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
+import java.util.concurrent.TimeUnit;
 
 public class LoginPOM {
 
@@ -43,7 +44,7 @@ public class LoginPOM {
     @CacheLookup
     private WebElement	submitpass;
     
-    @FindBy(how =How.XPATH, using = "//*[@id=\"tab-4\"]")
+    @FindBy(how =How.XPATH, using = "/html[1]/body[1]/glint-root[1]/div[1]/div[2]/div[1]/glint-header[1]/header[1]/div[3]/div[1]/glint-nav[1]/nav[1]/glint-tabs[1]/div[1]/ul[1]/li[5]/a[1]")
     @CacheLookup
     private WebElement reportsbutton;
     
@@ -75,6 +76,7 @@ public class LoginPOM {
     }
     
     public void clickreportsbutton() {
-    	reportsbutton.click();
+    	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        reportsbutton.click();
     }
 }

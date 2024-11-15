@@ -7,8 +7,10 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
@@ -36,9 +38,9 @@ public class Reporting extends confi{
 		public void launchBrowser() throws InterruptedException 
 			{
 				openBrowser();
-				LoginCredentials();
-				//ProgramChanging();
-				pChanging();
+    			LoginCredentials();
+    			pChanging();
+
 			}
 	
  	@AfterMethod
@@ -134,6 +136,50 @@ public void TC_06() throws InterruptedException
 	driver.quit();
 }
 
+@Test(description ="Test Case to open dropdown", groups={"smoke"})
+public void TC_07() throws InterruptedException
+{
+	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	OpenOvr();
+	ClickDropdown();
+	takeScreenshot(SCREENSHOT_PATH + "Dropdown");
+	Thread.sleep(5000);
+	driver.quit();
+}
+
+@Test(description ="Test Case to click add section", groups={"smoke"})
+public void TC_08() throws InterruptedException
+{
+	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	OpenOvr();
+	Clickaddsection();
+	driver.quit();
+}
+
+@Test(description ="Test Case to click add section and close", groups={"smoke"})
+public void TC_09() throws InterruptedException
+{
+	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	OpenOvr();
+	Clickaddsection();
+	Clickaddsurveyresultsbtn();
+	Thread.sleep(3000);
+	driver.quit();
+}
+
+@Test(description ="Test Case to click add section and export", groups={"smoke"})
+public void TC_10() throws InterruptedException
+{
+	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+	OpenOvr();
+	Clickaddsection();
+	Clickaddsurveyresultsbtn();
+	Thread.sleep(3000);
+	ReportExport();
+	ClickreportexporttoPDF();
+	Thread.sleep(8000);
+	//driver.quit();
+}
 
 }
 	

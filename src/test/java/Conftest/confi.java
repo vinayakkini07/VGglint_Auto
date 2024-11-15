@@ -3,10 +3,13 @@ package Conftest;
 
 
 
+import java.time.Duration;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
 import maven_testng.maventest.LoginPOM;
@@ -40,6 +43,9 @@ public class confi {
         logtest.clicksubmitButton();
         logtest.enterPassword("Dem0@pass2");
         logtest.clickpasssubmitButton();
+        logtest.clickreportsbutton();
+        //WebDriverWait wwait = new WebDriverWait(driver, Duration.ofSeconds(10));
+    	//wwait.until(ExpectedConditions.elementToBeClickable(By.xpath("//a[@id='tab-4']"))).click();
         logtest.clickreportsbutton();
         Thread.sleep(5000);
         //driver.quit();
@@ -106,5 +112,26 @@ public class confi {
         logtest.clickreportsbutton();
     	Thread.sleep(4000);
     		
+    }
+
+
+    public void ClickDropdown() throws InterruptedException {
+    	driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
+    	overall.clickdropdown();
+    }
+
+    public void Clickaddsection()   throws InterruptedException
+    {
+        overall.clickaddsection();
+    }
+
+    public void Clickaddsurveyresultsbtn()   throws InterruptedException
+    {
+        overall.clickaddsurveyresultsbtn();
+    }
+
+    public void ClickreportexporttoPDF() throws InterruptedException
+    {
+        overall.clickreportexporttopdf();
     }
 }
