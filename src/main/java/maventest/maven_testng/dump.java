@@ -1,4 +1,4 @@
-package maven_testng.maventest;
+package maventest.maven_testng;
 
 public class dump {
     

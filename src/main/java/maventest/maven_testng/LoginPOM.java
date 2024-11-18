@@ -1,6 +1,6 @@
 
 //POM Page for Login Page Locators
-package maven_testng.maventest;
+package maventest.maven_testng;
 import java.time.Duration;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;

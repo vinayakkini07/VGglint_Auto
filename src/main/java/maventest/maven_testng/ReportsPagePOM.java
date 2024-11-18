@@ -1,4 +1,4 @@
-package maven_testng.maventest;
+package maventest.maven_testng;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;

@@ -12,9 +12,9 @@ import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import maven_testng.maventest.LoginPOM;
-import maven_testng.maventest.Ovr_Res;
-import maven_testng.maventest.ReportsPagePOM;
+import maventest.maven_testng.LoginPOM;
+import maventest.maven_testng.Ovr_Res;
+import maventest.maven_testng.ReportsPagePOM;
 
 public class confi {
 

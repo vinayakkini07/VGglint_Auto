@@ -5,8 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
-import maven_testng.maventest.LoginPOM;
-import maven_testng.maventest.ODS;
+import maventest.maven_testng.LoginPOM;
+import maventest.maven_testng.ODS;
 
 
 public class confi_ods {
