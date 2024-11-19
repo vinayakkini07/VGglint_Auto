@@ -134,4 +134,9 @@ public class confi {
     {
         overall.clickreportexporttopdf();
     }
+
+    public void save_operation() throws InterruptedException
+    {
+        overall.save_report();
+    }
 }

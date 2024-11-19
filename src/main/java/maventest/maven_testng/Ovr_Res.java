@@ -53,6 +53,18 @@ public class Ovr_Res {
     @CacheLookup
     private WebElement  generatepdf;
 
+    @FindBy(how=How.XPATH,using="(//li[@id='option4'])[1]")
+    @CacheLookup
+    private  WebElement  save;
+
+    @FindBy(how=How.ID,using="saveDialogTitle")
+    @CacheLookup
+    private WebElement textbox;
+
+    @FindBy(how=How.XPATH,using="//button[normalize-space()='Save']")
+    @CacheLookup
+    private WebElement savebutton;
+
     public void clickcomments() {
         comments.click();
     }
@@ -81,6 +93,13 @@ public class Ovr_Res {
     public void clickreportexporttopdf(){
         pdfexport.click();
         generatepdf.click();
+    }
+
+    public void save_report(){
+        save.click();
+        textbox.clear();
+        textbox.sendKeys("Automation test");
+        savebutton.click();
     }
 
 }
