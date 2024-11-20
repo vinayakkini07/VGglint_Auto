@@ -192,6 +192,7 @@ public void TC_12() throws InterruptedException{
 	OpenOvr();
 	settings_button();
 	Thread.sleep(2000);
+	takeScreenshot(SCREENSHOT_PATH+"TC_02_Settings");
 }
 
 }
