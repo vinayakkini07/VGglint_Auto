@@ -65,6 +65,10 @@ public class Ovr_Res {
     @CacheLookup
     private WebElement savebutton;
 
+    @FindBy(how=How.XPATH,using="//*[@id=\"reportDetailHeader\"]/glint-report-header/div/div/div[1]/div/glint-report-template-tools/button")
+    @CacheLookup
+    private  WebElement settingsbtn;
+
     public void clickcomments() {
         comments.click();
     }
@@ -100,6 +104,10 @@ public class Ovr_Res {
         textbox.clear();
         textbox.sendKeys("Automation test");
         savebutton.click();
+    }
+
+    public void clicksettingsbtn(){
+        settingsbtn.click();
     }
 
 }

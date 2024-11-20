@@ -139,4 +139,9 @@ public class confi {
     {
         overall.save_report();
     }
+
+    public void settings_button() throws InterruptedException
+    {
+        overall.clicksettingsbtn();
+    }
 }

@@ -186,5 +186,13 @@ public void TC_11() throws InterruptedException{
 	Thread.sleep(3000);
 }
 
+
+@Test(description="test case to perform settings operation", groups={"smoke"})
+public void TC_12() throws InterruptedException{
+	OpenOvr();
+	settings_button();
+	Thread.sleep(2000);
+}
+
 }
 	
