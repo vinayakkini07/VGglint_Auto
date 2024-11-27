@@ -10,6 +10,7 @@ import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.support.ui.WebDriverWait;
+import org.testng.Assert;
 import org.testng.ITestResult;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeClass;
@@ -173,8 +174,46 @@ public class ODS_test extends confi_ods {
         CAV_button();
     }
 
-    
+    @Test(description="Verify People Text",groups={"smoke"})
+    public void TC_ODS_14() throws InterruptedException
+    {
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        configbutton();
+        People();
+        String expectedText="Active Employees (650)";
+        String actualText = CheckPeopleText();
+        Assert.assertEquals(actualText, expectedText);
+        System.out.println("Text matched");
+    }
 
+    @Test(description="Verify Whether we can click on any user or not")
+    public void TC_ODS_15() throws InterruptedException
+    {
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        configbutton();
+        People();
+        clickanyuser();
+    }
+
+
+    @Test(description="verify whether pencil button is displayed")
+    public void TC_ODS_16() throws InterruptedException
+    {
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        configbutton();
+        People();
+        clickanyuser();
+        Check_Pencil_button();
+    }
+
+
+    @Test(description="Verify the Searchbox",groups={"smoke"})
+    public void TC_ODS_17() throws InterruptedException
+    {
+        configbutton();
+        People();
+        check_text_box();
+    }
 
 
 }

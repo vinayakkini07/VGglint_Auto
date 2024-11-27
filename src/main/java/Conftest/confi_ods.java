@@ -102,5 +102,26 @@ public class confi_ods {
     {
         ods.CAV_Button();
     }
+
+    public String CheckPeopleText() throws InterruptedException
+    {
+               return ods.PeopleText();
+    }
+
+    public void clickanyuser() throws InterruptedException
+    {
+        ods.Clickanyuserbutton();
+    }
+
+    public void Check_Pencil_button() throws InterruptedException
+    {
+        ods.Pencilbuttoncheck();
+    }
+
+    public void check_text_box()    throws  InterruptedException
+    {
+        ods.Searchbox("test");
+    }
+
 }
 

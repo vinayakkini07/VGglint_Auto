@@ -1,12 +1,15 @@
 package maventest.maven_testng;
 import java.util.concurrent.TimeUnit;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.CacheLookup;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
+
+//import dev.failsafe.internal.util.Assert;
 
 public class ODS {
 
@@ -25,7 +28,7 @@ public class ODS {
     @CacheLookup
     private WebElement programs;
 
-    @FindBy(how = How.XPATH, using = "//li[@data-id='people']//div[@class='circle ng-star-inserted']")
+    @FindBy(how = How.XPATH, using = "//li[@data-id='people']//div[@class='circle']")
     @CacheLookup
     private WebElement people;
 
@@ -98,6 +101,19 @@ public class ODS {
     @CacheLookup
     private WebElement  checkboxCAV;
 
+    @FindBy(how=How.XPATH,using = "//h1[@class='userTableListHeader ng-star-inserted']")
+    @CacheLookup
+    private WebElement   ppltext;
+
+    @FindBy(how=How.XPATH,using= "//h1[@class='userName']//button[@aria-label='Edit']")
+    @CacheLookup
+    private WebElement pencilbtn;
+
+    @FindBy(how=How.XPATH,using= "(//input[@placeholder='Search People'])[1]")
+    @CacheLookup
+    private WebElement search_box;
+
+
     public void clickconfig() {
         config.click();
     }
@@ -167,6 +183,21 @@ public class ODS {
         checkboxCAV.click();
     }
 
+    public  String  PeopleText(){
+        return  ppltext.getText();
+    }
+    public void Clickanyuserbutton(){
+
+        driver.findElement(By.xpath("//td[normalize-space()='vkini@glintinc.com']")).click();
+    }
+
+    public void Pencilbuttoncheck(){
+        pencilbtn.isDisplayed();
+    }
+
+    public void Searchbox(String    text){
+        search_box.sendKeys(text);
+    }
 
 }
 
