@@ -5,7 +5,7 @@ import java.io.File;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
-
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -52,7 +52,8 @@ public class Reporting extends confi{
         }
     }
     
-	private void takeScreenshot(String baseFileName) {
+	 
+    private void takeScreenshot(String baseFileName) {
         try {
            
             String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
@@ -128,7 +129,7 @@ public void TC_06() throws InterruptedException
 {
 	driver.manage().timeouts().implicitlyWait(10,TimeUnit.SECONDS);
 	OpenOvr();
-	takeScreenshot(SCREENSHOT_PATH + "OVR");
+	takeScreenshot("OVR");
 	Thread.sleep(5000);
 	driver.quit();
 }
@@ -139,7 +140,7 @@ public void TC_07() throws InterruptedException
 	driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
 	OpenOvr();
 	ClickDropdown();
-	takeScreenshot(SCREENSHOT_PATH + "Dropdown");
+	takeScreenshot("Dropdown");
 	Thread.sleep(5000);
 	driver.quit();
 }
