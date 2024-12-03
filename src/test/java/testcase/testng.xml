@@ -2,7 +2,7 @@
 <suite parallel="false" name="Suite">
   <test name="Test">
     <classes>
-      <class name="testcase.NewTest"/>
+      <class name="C:\Users\vkini01\OneDrive - dentsu\Documents\Java Automation\VG Glint Auto Official\vg glint auto test\src\test\java\testcase\ODS_test.java"/>
     </classes>
   </test> <!-- Test -->
 </suite> <!-- Suite -->

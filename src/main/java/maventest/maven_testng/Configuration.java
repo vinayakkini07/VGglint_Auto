@@ -10,15 +10,15 @@ import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.How;
 import org.openqa.selenium.support.PageFactory;
 
-public class CombinedTest {
+public class Configuration {
 
     // WebDriver instance
     public WebDriver driver;
     public LoginPOM logtestODS;
-    public	CombinedTest	confi;
+    public	Configuration	confi;
 
 
-    public   CombinedTest(WebDriver newDriver) {
+    public   Configuration(WebDriver newDriver) {
         driver = newDriver;
         PageFactory.initElements(driver, this);
     }
@@ -114,12 +114,27 @@ public class CombinedTest {
     @CacheLookup
     public WebElement search_box;
 
-    // Methods for interacting with the elements in ODS
+    @FindBy(how=How.XPATH, using = "//*[@id=\"vg-panel0\"]/div/div/div/div[2]/table/tfoot/tr/td/glint-paging/div/nav/ol/li[3]/a")
+    @CacheLookup
+    public WebElement Paginationbtn;
 
+    @FindBy(how=How.XPATH, using="(//button[@class='btnWithIcon btnImport glintButton'])[1]")
+    @CacheLookup
+    public WebElement importbtn;
+
+    @FindBy(how=How.XPATH, using="(//button[@aria-label='Back'])[1]")
+    @CacheLookup
+    public WebElement backbtn;
+
+    @FindBy(how=How.XPATH,using="//p[normalize-space()='650']")
+    @CacheLookup
+    public WebElement usercount;
+
+    // Methods for interacting with the elements in ODS
 
     public void clickconfig()
     {
-        confi = new CombinedTest(driver); 
+        confi = new Configuration(driver); 
         confi.configu.click(); 
     }
 
@@ -193,6 +208,24 @@ public class CombinedTest {
     public void searchBox(String text) {
         confi.search_box.sendKeys(text);
     }
+
+    public void Paginationbutton() {
+        confi.Paginationbtn.click();
+    }
+
+    public void ImportButton() {
+        confi.importbtn.click();
+    }
+
+    public void backbutton()
+    {
+        confi.backbtn.click();
+    }
+
+    public String Usercount() {
+        return confi.usercount.getText();
+    }
+
 
     // Browser setup and login methods
     public void openBrowserODS() throws InterruptedException {

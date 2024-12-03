@@ -20,14 +20,14 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import maventest.maven_testng.CombinedTest;
+import maventest.maven_testng.Configuration;
 
 
 public class ODS_test {
     
     private static final String SCREENSHOT_PATH = System.getProperty("user.dir") + "/test-output/screenshots/";
     private WebDriverWait wait;
-    public CombinedTest config;
+    public Configuration config;
     private WebDriver driver;
     
     @BeforeClass
@@ -40,7 +40,7 @@ public class ODS_test {
     public void setup() throws InterruptedException {
         driver = new ChromeDriver(); 
         //wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        config = new CombinedTest(driver);
+        config = new Configuration(driver);
         config.openBrowserODS();
         config.LoginCredentialsODS();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
@@ -213,5 +213,46 @@ public class ODS_test {
     }
 
 
+    @Test(description="Verify the different Pages",groups={"smoke"})
+    public void TC_ODS_17() throws InterruptedException
+    {
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        config.clickconfig();
+        config.clickpeople();
+        config.Paginationbutton();
+        Thread.sleep(3000);
+    }
+
+    @Test(description="Verify Import Button",groups={"smoke"})
+    public void TC_ODS_18() throws InterruptedException
+    {
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        config.clickconfig();
+        config.clickpeople();
+        config.ImportButton();
+        Thread.sleep(3000);
+    }
+
+    @Test(description="Verify back Button",groups={"smoke"})
+    public void TC_ODS_19() throws InterruptedException
+    {
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        config.clickconfig();
+        config.clickpeople();
+        config.backbutton();
+        Thread.sleep(3000);
+    }
+
+    @Test(description="Verify back Button",groups={"smoke"})
+    public void TC_ODS_20() throws InterruptedException
+    {
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        config.clickconfig();
+        config.clickpeople();
+        String expectedText="650";
+        String actualText = config.Usercount();
+        Assert.assertEquals(actualText, expectedText);
+        System.out.println("Text matched");
+    }
 }
    

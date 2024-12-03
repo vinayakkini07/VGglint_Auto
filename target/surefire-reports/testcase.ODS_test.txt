@@ -1,8 +1,4 @@
 -------------------------------------------------------------------------------
 Test set: testcase.ODS_test
 -------------------------------------------------------------------------------
-Tests run: 1, Failures: 1, Errors: 0, Skipped: 0, Time elapsed: 31.712 s <<< FAILURE! - in testcase.ODS_test
-TC_ODS_18(testcase.ODS_test)  Time elapsed: 10.618 s  <<< FAILURE!
-java.lang.NullPointerException: Cannot invoke "org.openqa.selenium.SearchContext.findElement(org.openqa.selenium.By)" because "this.searchContext" is null
-	at testcase.ODS_test.TC_ODS_18(ODS_test.java:226)
-
+Tests run: 1, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 41.505 s - in testcase.ODS_test
