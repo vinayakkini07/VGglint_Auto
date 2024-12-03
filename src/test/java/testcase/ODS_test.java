@@ -7,8 +7,11 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.concurrent.TimeUnit;
 
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
+import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 import org.testng.ITestResult;
@@ -17,12 +20,15 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
-import Conftest.confi_ods;
+import maventest.maven_testng.CombinedTest;
 
-public class ODS_test extends confi_ods {
+
+public class ODS_test {
     
     private static final String SCREENSHOT_PATH = System.getProperty("user.dir") + "/test-output/screenshots/";
     private WebDriverWait wait;
+    public CombinedTest config;
+    private WebDriver driver;
     
     @BeforeClass
     public void setupClass() {
@@ -32,8 +38,11 @@ public class ODS_test extends confi_ods {
     
     @BeforeMethod
     public void setup() throws InterruptedException {
-        openBrowserODS();
-        LoginCredentialsODS();
+        driver = new ChromeDriver(); 
+        //wait = new WebDriverWait(driver, Duration.ofSeconds(10));
+        config = new CombinedTest(driver);
+        config.openBrowserODS();
+        config.LoginCredentialsODS();
         wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
     
@@ -49,15 +58,14 @@ public class ODS_test extends confi_ods {
         }
     }
     
-    private void takeScreenshot(String baseFileName) {
+    private     void    takeScreenshot(String baseFileName) {
         try {
-           
             String timestamp = LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyyMMdd_HHmmss"));
             String fileName = baseFileName + "_" + timestamp + ".png";
             
             File screenshot = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
             File destination = new File(SCREENSHOT_PATH + fileName);
-            screenshot.renameTo(destination);
+            FileUtils.copyFile(screenshot, destination);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -65,88 +73,87 @@ public class ODS_test extends confi_ods {
 
     @Test(description = "Verify config button functionality", groups = {"smoke"})
     public void TC_ODS_01() throws InterruptedException {
-        configbutton();
+        config.clickconfig();
     }
 
     @Test(description = "Verify Survey Programs section", groups = {"regression"})
     public void TC_ODS_02() throws InterruptedException {
-        configbutton();
-        Survey_Programs();
+        config.clickconfig();
+        config.clickprograms();
     }
-    
+   
     @Test(description = "Verify Survey Programs with screenshot", groups = {"regression"})
     public void TC_ODS_03() throws InterruptedException {
-        configbutton();
-        Survey_Programs();
-        takeScreenshot("survey_programs");
+        config.clickconfig();
+        config.clickprograms();
+        takeScreenshot("survey_programs1hhhh1");
     }
 
 
     @Test(description = "Verify People page with screenshot", groups = {"regression"})
     public void TC_ODS_04() throws InterruptedException {
-        configbutton();
-        People();
+        config.clickconfig();
+        config.clickpeople();
         takeScreenshot("people_page");
     }
-
+ 
     @Test(description = "Verify People Export functionality", groups = {"regression"})
     public void TC_ODS_05() throws InterruptedException {
-        configbutton();
-        People();
-        ClickPeopleExport();
-        //takeScreenshot("people_export");
+        config.clickconfig();
+        config.clickpeople();
+        config.clickpplexport();
     }
-    
+ 
     @Test(description = "Verify People page buttons", groups = {"regression"})
     public void TC_ODS_06() throws InterruptedException {
-        configbutton();
-        People();
-        PeoplePageButtonCheck();
+        config.clickconfig();
+        config.clickpeople();
+        config.checkpplpagebutton();
     }
 
+    //Refactor Required
     @Test(description = "verify Attribute buttons" , groups ={"regression"})
     public void TC_ODS_07() throws InterruptedException {
-        configbutton();
-        People();
-        AttributeButtonCheck();
+        config.clickconfig();
+        config.clickpeople();
+        config.attrbuttoncheck();
     }
-
+   
     @Test(description ="Verify Company admin in User Roles", groups={"regression"})
     public void TC_ODS_08() throws InterruptedException
     {
-        configbutton();
-        People();
-        CompanyAdmin();
-        Thread.sleep(5000);
+        config.clickconfig();
+        config.clickpeople();
+        config.clickcompanyadmin();
+        //Thread.sleep(5000);
     }
 
     @Test(description ="Verify User Role1 in User Roles", groups={"regression"})
     public void TC_ODS_09() throws InterruptedException
     {
-        configbutton();
-        People();
-        Urole1();
+        config.clickconfig();
+        config.clickpeople();
+        config.clickUserrole1();
         Thread.sleep(5000);
     }
-
+ 
     @Test(description="Verify User role 2 in user roles", groups={"regression"})
     public void TC_ODS_10() throws InterruptedException
     {
-        configbutton();
-        People();
-        Urole2();
+        config.clickconfig();
+        config.clickpeople();
+        config.clickUserrole2();
         Thread.sleep(5000);
     }
 
     @Test(description="Verify User Attribute and Optional Attributes button",groups={"smoke"})
     public void TC_ODS_11() throws InterruptedException
     {
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        configbutton();
-        Thread.sleep(5000);
-        People();
-        Actions_Button();
-        AttributeVisibility();
+        config.clickconfig();
+        config.clickpeople();
+        config.peopleActions_button();
+        config.clickuserattribute();
+        //config.CAV_Button();
 
     }
 
@@ -154,66 +161,57 @@ public class ODS_test extends confi_ods {
     public void TC_ODS_12() throws InterruptedException
     {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        configbutton();
-        Thread.sleep(5000);
-        People();
-        Actions_Button();
-        AttributeVisibility();
+        config.clickconfig();
+        config.clickpeople();
+        config.peopleActions_button();
+        config.clickuserattribute();
+        config.CAV_Button();
         takeScreenshot("CAV");
     }
 
-    @Test(description="Verify Custom Attribute Visibility button",groups={"smoke"})
+    @Test(description="Verify People Text",groups={"smoke"})
     public void TC_ODS_13() throws InterruptedException
     {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        configbutton();
-        Thread.sleep(5000);
-        People();
-        Actions_Button();
-        AttributeVisibility();
-        CAV_button();
-    }
-
-    @Test(description="Verify People Text",groups={"smoke"})
-    public void TC_ODS_14() throws InterruptedException
-    {
-        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        configbutton();
-        People();
+        config.clickconfig();
+        config.clickpeople();
         String expectedText="Active Employees (650)";
-        String actualText = CheckPeopleText();
+        String actualText = config.PeopleText();
         Assert.assertEquals(actualText, expectedText);
         System.out.println("Text matched");
     }
 
     @Test(description="Verify Whether we can click on any user or not")
-    public void TC_ODS_15() throws InterruptedException
+    public void TC_ODS_14() throws InterruptedException
     {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        configbutton();
-        People();
-        clickanyuser();
+        config.clickconfig();
+        config.clickpeople();
+        config.clickanyuserbutton();
     }
 
 
     @Test(description="verify whether pencil button is displayed")
-    public void TC_ODS_16() throws InterruptedException
+    public void TC_ODS_15() throws InterruptedException
     {
         driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
-        configbutton();
-        People();
-        clickanyuser();
-        Check_Pencil_button();
+        config.clickconfig();
+        config.clickpeople();
+        config.clickanyuserbutton();
+        config.checkPencilButton();
     }
 
 
     @Test(description="Verify the Searchbox",groups={"smoke"})
-    public void TC_ODS_17() throws InterruptedException
+    public void TC_ODS_16() throws InterruptedException
     {
-        configbutton();
-        People();
-        check_text_box();
+        driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+        config.clickconfig();
+        config.clickpeople();
+        config.searchBox("test");
+        Thread.sleep(3000);
     }
 
 
 }
+   

@@ -5,9 +5,9 @@
     <classes>
       <class name="testcase.ODS_test">
         <methods>
-          <include name="TC_ODS_13"/>
           <include name="setupClass"/>
           <include name="tearDown"/>
+          <include name="TC_ODS_18"/>
           <include name="setup"/>
         </methods>
       </class> <!-- testcase.ODS_test -->
